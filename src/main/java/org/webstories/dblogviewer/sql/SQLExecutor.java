@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import org.webstories.dblogviewer.arguments.DatabaseArguments;
 import org.webstories.dblogviewer.arguments.MandatoryArgumentNotFoundException;
 
-abstract class SQLExecutor {
+public abstract class SQLExecutor {
 	protected Connection connection;
 	SQLExecutor( DatabaseArguments arguments ) throws SQLException, MandatoryArgumentNotFoundException {
 		String url = arguments.retrieveIp();
@@ -16,5 +16,5 @@ abstract class SQLExecutor {
 		String password = arguments.retrievePassword();
 		this.connection = DriverManager.getConnection( url, user, password );
 	}
-	protected abstract ResultSet list( SQLQuery query ) throws SQLException;
+	public abstract ResultSet list( SQLQuery query ) throws SQLException;
 }
