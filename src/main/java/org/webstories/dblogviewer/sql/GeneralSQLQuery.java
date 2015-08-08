@@ -6,7 +6,7 @@ public class GeneralSQLQuery implements SQLQuery {
 		this.query = query;
 	}
 	@Override
-	public String toStringQuery() {
+	public String toString() {
 		return query;
 	}
 }
