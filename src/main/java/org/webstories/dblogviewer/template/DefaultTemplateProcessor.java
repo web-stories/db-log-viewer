@@ -2,7 +2,7 @@ package org.webstories.dblogviewer.template;
 
 import org.webstories.dblogviewer.arguments.TemplateArguments;
 import org.webstories.dblogviewer.sql.SQLExecutor;
-import org.webstories.dblogviewer.template.implementations.BasicTemplateFactory;
+import org.webstories.dblogviewer.template.basic.BasicTemplateFactory;
 
 public class DefaultTemplateProcessor implements TemplateProcessor {
 	private SQLExecutor sqlExecutor;
@@ -12,7 +12,7 @@ public class DefaultTemplateProcessor implements TemplateProcessor {
 		this.templateMetadata = TemplateMetadata.forName( arguments.retrieveTemplateName() );
 	}
 	@Override
-	public TemplateResult executeTemplate() throws TemplateFactoryNotFound {
+	public TemplateResult executeTemplate() throws TemplateFactoryNotFound, TemplateExecutionException {
 		Template template = null;
 		switch ( templateMetadata ) {
 			case BASIC:
