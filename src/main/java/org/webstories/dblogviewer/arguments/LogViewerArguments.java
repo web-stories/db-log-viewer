@@ -10,8 +10,8 @@ public class LogViewerArguments implements DatabaseArguments, FileArguments, Tem
 		return retrieveMandatoryValue( "out" );
 	}
 	@Override
-	public String retrieveIp() throws MandatoryArgumentNotFoundException {
-		return retrieveMandatoryValue( "ip" );
+	public String retrieveHost() throws MandatoryArgumentNotFoundException {
+		return retrieveMandatoryValue( "host" );
 	}
 	@Override
 	public String retrieveUsername() throws MandatoryArgumentNotFoundException {

@@ -10,11 +10,11 @@ import org.webstories.dblogviewer.arguments.MandatoryArgumentNotFoundException;
 
 public abstract class SQLExecutor {
 	protected Connection connection;
-	SQLExecutor( DatabaseArguments arguments ) throws SQLException, MandatoryArgumentNotFoundException {
-		String url = arguments.retrieveIp();
-		String user = arguments.retrieveUsername();
-		String password = arguments.retrievePassword();
-		this.connection = DriverManager.getConnection( url, user, password );
+	SQLExecutor( DatabaseArguments dbArgs ) throws SQLException, MandatoryArgumentNotFoundException {
+		String host = dbArgs.retrieveHost();
+		String user = dbArgs.retrieveUsername();
+		String password = dbArgs.retrievePassword();
+		this.connection = DriverManager.getConnection( "jdbc:postgresql://" + host + "/webstories", user, password );
 	}
 	public abstract ResultSet list( SQLQuery query ) throws SQLException;
 }
