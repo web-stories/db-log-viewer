@@ -7,9 +7,13 @@ import org.webstories.dblogviewer.template.basic.BasicTemplateFactory;
 public class DefaultTemplateProcessor implements TemplateProcessor {
 	private SQLExecutor sqlExecutor;
 	private TemplateMetadata templateMetadata;
-	public DefaultTemplateProcessor( TemplateArguments arguments, SQLExecutor sqlExecutor ) throws TemplateNotFoundException {
+	public DefaultTemplateProcessor( TemplateArguments arguments, SQLExecutor sqlExecutor ) {
 		this.sqlExecutor = sqlExecutor;
-		this.templateMetadata = TemplateMetadata.forName( arguments.retrieveTemplateName() );
+		try {
+			this.templateMetadata = TemplateMetadata.forName( arguments.retrieveTemplateName() );
+		} catch ( TemplateNotFoundException e ) {
+			this.templateMetadata = TemplateMetadata.BASIC;
+		}
 	}
 	@Override
 	public TemplateResult executeTemplate() throws TemplateFactoryNotFound, TemplateExecutionException {
