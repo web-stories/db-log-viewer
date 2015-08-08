@@ -8,10 +8,10 @@ public class StringParts {
 	public String join( String delimiter ) {
 		String result = "";
 		for ( int i = 0; i < parts.length; i++ ) {
-			if ( i == 0 ) {
-				continue;
+			result += parts[ i ];
+			if ( i != parts.length - 1 ) {
+				result += delimiter;
 			}
-			result = delimiter + result;
 		}
 		return result;
 	}
