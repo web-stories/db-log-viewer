@@ -1,8 +1,6 @@
-package org.webstories.dblogviewer.template.basic;
+package org.webstories.dblogviewer.template;
 
 import org.webstories.dblogviewer.sql.SQLExecutor;
-import org.webstories.dblogviewer.template.TemplateExecutionException;
-import org.webstories.dblogviewer.template.TemplateOutput;
 
 public abstract class TemplateFactory {
 	protected SQLExecutor sqlExecutor;
