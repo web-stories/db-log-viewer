@@ -1,6 +1,6 @@
 package org.webstories.dblogviewer.sql;
 
-interface SQLQuery {
+public interface SQLQuery {
 	@Override
 	String toString();
 }

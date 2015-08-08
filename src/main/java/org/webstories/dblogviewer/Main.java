@@ -6,21 +6,23 @@ import java.util.logging.Logger;
 import org.webstories.dblogviewer.arguments.LogViewerArguments;
 import org.webstories.dblogviewer.arguments.MandatoryArgumentNotFoundException;
 import org.webstories.dblogviewer.sql.PostgreSQLExecutor;
-import org.webstories.dblogviewer.sql.SQLExecutor;
 import org.webstories.dblogviewer.template.DefaultTemplateProcessor;
+import org.webstories.dblogviewer.template.TemplateFactoryNotFound;
 import org.webstories.dblogviewer.template.TemplateNotFoundException;
-import org.webstories.dblogviewer.template.TemplateProcessor;
-import org.webstories.dblogviewer.template.TemplateResult;
 
 public class Main {
 	private static Logger LOGGER = Logger.getLogger( "org.webstories.dblogviewer" );
-	public static void main( String[] args ) throws SQLException, TemplateNotFoundException {
+	public static void main( String[] args ) throws SQLException, TemplateNotFoundException, TemplateFactoryNotFound {
 		try {
 			LogViewerArguments arguments = new LogViewerArguments( args );
-			SQLExecutor sqlExecutor = new PostgreSQLExecutor( arguments );
-			TemplateProcessor processor = new DefaultTemplateProcessor( arguments , sqlExecutor);
-			TemplateResult result = processor.executeTemplate();
-			System.out.println( result.toCharSequence() );
+			CharSequence result = new DefaultTemplateProcessor(
+					arguments,
+					new PostgreSQLExecutor( arguments )
+				)
+				.executeTemplate()
+				.toOutput()
+				.toCharSequence();
+			System.out.println( result );
 		} catch ( MandatoryArgumentNotFoundException e ) {
 			LOGGER.severe( e.getMessage() );
 		}
