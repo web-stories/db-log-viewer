@@ -3,12 +3,15 @@ package org.webstories.dblogviewer.template.basic;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.webstories.dblogviewer.sql.GeneralSQLQuery;
 import org.webstories.dblogviewer.sql.SQLExecutor;
 import org.webstories.dblogviewer.sql.SQLQuery;
 import org.webstories.dblogviewer.template.LogEvent;
+import org.webstories.dblogviewer.template.LogEventsFilter;
+import org.webstories.dblogviewer.template.NullEventsFilter;
 import org.webstories.dblogviewer.template.TemplateExecutionException;
 import org.webstories.dblogviewer.template.TemplateFactory;
 import org.webstories.dblogviewer.template.TemplateOutput;
@@ -18,8 +21,13 @@ import org.webstories.dblogviewer.template.orm.UserRecord;
 import org.webstories.dblogviewer.utils.StringParts;
 
 public class BasicTemplateFactory extends TemplateFactory {
+	private LogEventsFilter filter = new NullEventsFilter();
 	public BasicTemplateFactory( SQLExecutor sqlExecutor ) {
 		super( sqlExecutor );
+	}
+	public BasicTemplateFactory( SQLExecutor sqlExecutor, LogEventsFilter filter ) {
+		super( sqlExecutor );
+		this.filter = filter;
 	}
 	@Override
 	public TemplateOutput createOutput() throws TemplateExecutionException {
@@ -45,6 +53,13 @@ public class BasicTemplateFactory extends TemplateFactory {
 		} catch ( SQLException e ) {
 			throw new TemplateExecutionException( e );
 		}
+		Iterator<LogEvent> iterator = logs.iterator();
+		while ( iterator.hasNext() ) {
+			LogEvent log = iterator.next();
+			if ( filter.ignore( log ) ) {
+				iterator.remove();
+			}
+		}
 		return new BasicTemplateOutput( logs );
-	}
+	};
 }

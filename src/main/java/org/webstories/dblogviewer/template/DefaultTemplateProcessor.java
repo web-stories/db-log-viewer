@@ -3,6 +3,7 @@ package org.webstories.dblogviewer.template;
 import org.webstories.dblogviewer.arguments.TemplateArguments;
 import org.webstories.dblogviewer.sql.SQLExecutor;
 import org.webstories.dblogviewer.template.basic.BasicTemplateFactory;
+import org.webstories.dblogviewer.template.failure.FailureTemplateFactory;
 
 public class DefaultTemplateProcessor implements TemplateProcessor {
 	private SQLExecutor sqlExecutor;
@@ -23,6 +24,9 @@ public class DefaultTemplateProcessor implements TemplateProcessor {
 				case BASIC:
 				case NULL:
 					template = new DefaultTemplate( new BasicTemplateFactory( sqlExecutor ) );
+					break;
+				case FAILURE:
+					template = new DefaultTemplate( new FailureTemplateFactory( sqlExecutor ) );
 					break;
 			}
 		}

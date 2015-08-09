@@ -13,12 +13,13 @@ public class BasicTemplateOutput implements TemplateOutput {
 	}
 	@Override
 	public CharSequence toCharSequence() {
-		StringParts parts = new StringParts( logs.size() + " log occurrences\n\n-----\n" );
+		StringParts parts = new StringParts();
 		for ( LogEvent log : logs ) {
 			BasicTextRow line = new BasicTextRow( new BasicTextRowFactory( log ) );
 			parts.add( line.toString() );
 			parts.add( "\n" );
 		}
+		parts.add( "-----\n\n" + logs.size() + " log occurrences" );
 		return parts.join( "\n" );
 	}
 }
