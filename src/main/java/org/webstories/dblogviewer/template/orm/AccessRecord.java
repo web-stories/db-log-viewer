@@ -8,11 +8,16 @@ public class AccessRecord {
 	private Long idUser;
 	private String ip;
 	private String data;
+	private Long dateInc;
 	public AccessRecord( ResultSet result ) throws SQLException {
 		this.idLog = result.getLong( "id_log" );
 		this.idUser = result.getLong( "id_user" );
 		this.ip = result.getString( "ds_ip" );
 		this.data = result.getString( "ds_data" );
+		this.dateInc = result.getLong( "dt_inc" );
+		if ( this.dateInc == 0 ) {
+			this.dateInc = null;
+		}
 	}
 	public Long getIdLog() {
 		return idLog;
@@ -25,5 +30,8 @@ public class AccessRecord {
 	}
 	public String getData() {
 		return this.data;
+	}
+	public Long getDateInc() {
+		return this.dateInc;
 	}
 }

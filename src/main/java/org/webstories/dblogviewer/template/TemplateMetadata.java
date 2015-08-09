@@ -1,7 +1,9 @@
 package org.webstories.dblogviewer.template;
 
 public enum TemplateMetadata {
-	BASIC( "basic" ), NULL( "" );
+	BASIC( "basic" ),
+	FAILURE( "failure" ),
+	NULL( "" );
 	private String name;
 	private TemplateMetadata( String name ) {
 		this.name = name;
