@@ -4,12 +4,14 @@ import org.webstories.dblogviewer.utils.StringParts;
 
 class BasicTextRow {
 	private String idLogField;
+	private String dateField;
 	private String userField;
 	private String ipField;
 	private String dataField;
 	private String exceptionField;
 	BasicTextRow( BasicTextRowFactory factory ) {
 		this.idLogField = factory.createIdLogField();
+		this.dateField = factory.createDate();
 		this.userField = factory.createUserField();
 		this.ipField = factory.createIpField();
 		this.dataField = factory.createDataField();
@@ -18,6 +20,7 @@ class BasicTextRow {
 	@Override
 	public String toString() {
 		StringParts columns = new StringParts();
+		columns.add( dateField + ":" );
 		columns.add( "Log id: " + idLogField );
 		columns.add( "User: " + userField );
 		columns.add( "IP: " + ipField );
