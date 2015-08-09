@@ -20,7 +20,7 @@ class BasicTextRow {
 	@Override
 	public String toString() {
 		StringParts columns = new StringParts();
-		columns.add( dateField + ":" );
+		columns.add( "In: " + dateField );
 		columns.add( "Log id: " + idLogField );
 		columns.add( "User: " + userField );
 		columns.add( "IP: " + ipField );
