@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.webstories.dblogviewer.template.LogEvent;
 import org.webstories.dblogviewer.template.TemplateOutput;
+import org.webstories.dblogviewer.utils.StringParts;
 
 public class BasicTemplateOutput implements TemplateOutput {
 	private List<LogEvent> logs;
@@ -12,7 +13,12 @@ public class BasicTemplateOutput implements TemplateOutput {
 	}
 	@Override
 	public CharSequence toCharSequence() {
-		// TODO print all data
-		return logs.size() + " log occurrences";
+		StringParts parts = new StringParts( logs.size() + " log occurrences\n\n-----\n" );
+		for ( LogEvent log : logs ) {
+			BasicTextRow line = new BasicTextRow( new BasicTextRowFactory( log ) );
+			parts.add( line.toString() );
+			parts.add( "\n" );
+		}
+		return parts.join( "\n" );
 	}
 }
