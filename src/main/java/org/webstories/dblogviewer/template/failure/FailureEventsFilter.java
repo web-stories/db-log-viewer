@@ -14,6 +14,10 @@ class FailureEventsFilter implements LogEventsFilter {
 		if ( "/error/sc-404".equals( dataField.requestedPath() ) ) {
 			return true;
 		}
+		String exception = log.getException().getException();
+		if ( exception != null && exception.contains( "UserNotLoggedException" ) ) {
+			return true;
+		}
 		return false;
 	}
 }
