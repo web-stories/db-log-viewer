@@ -1,13 +1,9 @@
 package org.webstories.dblogviewer.arguments;
 
-public class LogViewerArguments implements DatabaseArguments, FileArguments, TemplateArguments {
+public class LogViewerArguments implements DatabaseArguments, TemplateArguments {
 	private String[] args;
 	public LogViewerArguments( String[] args ) {
 		this.args = args;
-	}
-	@Override
-	public String retrieveOutputFile() throws MandatoryArgumentNotFoundException {
-		return retrieveMandatoryValue( "out" );
 	}
 	@Override
 	public String retrieveHost() throws MandatoryArgumentNotFoundException {

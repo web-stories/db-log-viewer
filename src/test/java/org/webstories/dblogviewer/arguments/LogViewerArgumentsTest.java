@@ -7,13 +7,13 @@ public class LogViewerArgumentsTest {
 	@Test
 	public void should_retrieve_a_couple_of_arguments() throws MandatoryArgumentNotFoundException {
 		String[] argument = new String[] {
-			"-out=/out.txt",
+			"-host=10.10.1.122",
 			"-username=postgres"
 		};
 		LogViewerArguments arguments = new LogViewerArguments( argument );
 		
-		String actual = arguments.retrieveOutputFile();
-		String expected = "/out.txt";
+		String actual = arguments.retrieveHost();
+		String expected = "10.10.1.122";
 		Assert.assertEquals( expected, actual );
 		
 		actual = arguments.retrieveUsername();
