@@ -15,6 +15,9 @@ public class AccessRecord {
 		this.ip = result.getString( "ds_ip" );
 		this.data = result.getString( "ds_data" );
 		this.dateInc = result.getLong( "dt_inc" );
+		if ( this.dateInc == 0 ) {
+			this.dateInc = null;
+		}
 	}
 	public Long getIdLog() {
 		return idLog;

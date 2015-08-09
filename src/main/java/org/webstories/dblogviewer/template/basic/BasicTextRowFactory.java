@@ -35,6 +35,9 @@ class BasicTextRowFactory {
 	};
 	String createDate() {
 		Long dateMillis = log.getAccess().getDateInc();
+		if ( dateMillis == null ) {
+			return "(Undefined date)";
+		}
 		DateFormat dateFormat = new SimpleDateFormat( "yyyy/MM/dd HH:mm:ss 'GMT' Z" );
 		return dateFormat.format( dateMillis );
 	}
