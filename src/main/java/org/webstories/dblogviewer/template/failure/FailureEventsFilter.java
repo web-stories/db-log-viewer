@@ -26,6 +26,9 @@ class FailureEventsFilter implements LogEventsFilter {
 		if ( ignoredIp ) {
 			return true;
 		}
+		if ( dataField.originalRequestPath().startsWith( "/static" ) ) {
+			return true;
+		}
 		return false;
 	}
 }

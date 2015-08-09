@@ -16,4 +16,11 @@ public class LogDataFieldWrapper implements LogRequestHeader {
 		String requestedPath = sections[ 1 ];
 		return requestedPath;
 	}
+	@Override
+	public String originalRequestPath() {
+		String firstLine = lines.get( 0 );
+		String[] sections = firstLine.split( " " );
+		String originalRequestPath = sections[ 3 ];
+		return originalRequestPath;
+	}
 }
