@@ -1,7 +1,7 @@
 package org.webstories.dblogviewer.template;
 
 public enum TemplateMetadata {
-	BASIC( "basic" );
+	BASIC( "basic" ), NULL( "" );
 	private String name;
 	private TemplateMetadata( String name ) {
 		this.name = name;
@@ -15,6 +15,9 @@ public enum TemplateMetadata {
 			if ( template.name.equals( templateName ) ) {
 				return template;
 			}
+		}
+		if ( templateName == null ) {
+			return TemplateMetadata.NULL;
 		}
 		throw new TemplateNotFoundException( templateName );
 	}
