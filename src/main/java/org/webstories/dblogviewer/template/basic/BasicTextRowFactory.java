@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import org.webstories.dblogviewer.template.LogEvent;
+import org.webstories.dblogviewer.template.datafield.LogDataFieldWrapper;
 
 class BasicTextRowFactory {
 	private LogEvent log;
@@ -40,5 +41,10 @@ class BasicTextRowFactory {
 		}
 		DateFormat dateFormat = new SimpleDateFormat( "yyyy/MM/dd HH:mm:ss 'GMT' Z" );
 		return dateFormat.format( dateMillis );
+	}
+	String createQuerystring() {
+		String dataField = log.getAccess().getData();
+		LogDataFieldWrapper dataWrapper = new LogDataFieldWrapper( dataField );
+		return dataWrapper.queryString();
 	}
 }

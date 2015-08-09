@@ -9,6 +9,7 @@ class BasicTextRow {
 	private String ipField;
 	private String dataField;
 	private String exceptionField;
+	private String querystringField;
 	BasicTextRow( BasicTextRowFactory factory ) {
 		this.idLogField = factory.createIdLogField();
 		this.dateField = factory.createDate();
@@ -16,6 +17,7 @@ class BasicTextRow {
 		this.ipField = factory.createIpField();
 		this.dataField = factory.createDataField();
 		this.exceptionField = factory.createExceptionField();
+		this.querystringField = factory.createQuerystring();
 	}
 	@Override
 	public String toString() {
@@ -26,6 +28,7 @@ class BasicTextRow {
 		columns.add( "IP: " + ipField );
 		columns.add( "Request: " + dataField.split( "\n" )[ 0 ] );
 		columns.add( "Exception: " + exceptionField.split( "\n" )[ 0 ] );
+		columns.add( "Querystring: " + querystringField );
 		return columns.join( "\n" );
 	}
 }
