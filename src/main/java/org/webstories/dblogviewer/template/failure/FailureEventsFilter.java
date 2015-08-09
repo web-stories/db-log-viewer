@@ -29,6 +29,13 @@ class FailureEventsFilter implements LogEventsFilter {
 		if ( dataField.originalRequestPath().startsWith( "/static" ) ) {
 			return true;
 		}
+		Long logDate = log.getAccess().getDateInc();
+		if ( logDate != null ) {
+			long dateAround90DaysAgo = System.currentTimeMillis() - (1000L * 60L * 60L * 24L * 90L);
+			if ( logDate < dateAround90DaysAgo ) {
+				return true;
+			}
+		}
 		return false;
 	}
 }
