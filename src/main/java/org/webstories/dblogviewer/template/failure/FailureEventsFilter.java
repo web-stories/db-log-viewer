@@ -1,5 +1,7 @@
 package org.webstories.dblogviewer.template.failure;
 
+import java.util.Arrays;
+
 import org.webstories.dblogviewer.template.LogEvent;
 import org.webstories.dblogviewer.template.LogEventsFilter;
 import org.webstories.dblogviewer.template.datafield.LogDataFieldWrapper;
@@ -16,6 +18,12 @@ class FailureEventsFilter implements LogEventsFilter {
 		}
 		String exception = log.getException().getException();
 		if ( exception != null && exception.contains( "UserNotLoggedException" ) ) {
+			return true;
+		}
+		boolean ignoredIp = Arrays.asList(
+			"69.64.84.27"
+		).contains( log.getAccess().getIp() );
+		if ( ignoredIp ) {
 			return true;
 		}
 		return false;
